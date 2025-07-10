@@ -18,6 +18,7 @@ public class Main {
                 sb.append(num).append(" ");
             }
         }
-        System.out.println(sb.toString().trim()); // 제일 앞, 제일 뒤 공백 제거 trim, 문자열로 나오긴 할거지만 명시적으로 string 만들어주기
+        System.out.println(sb.toString().trim());
+        // 제일 앞, 제일 뒤 공백 제거 trim, toString 안 쓰면 trim 사용 못함
     }
 }
