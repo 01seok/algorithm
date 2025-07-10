@@ -10,11 +10,14 @@ public class Main {
         int X = Integer.parseInt(st.nextToken());
         st = new StringTokenizer(br.readLine());
 
+        StringBuilder sb = new StringBuilder(); // 효율적인 출력을 위해 가변 문자열 생성
+
         for (int i = 0; i < N; i++) {
             int num = Integer.parseInt(st.nextToken());
             if (num < X) {
-                System.out.println(num);
+                sb.append(num).append(" ");
             }
         }
+        System.out.println(sb.toString().trim()); // 제일 앞, 제일 뒤 공백 제거 trim, 문자열로 나오긴 할거지만 명시적으로 string 만들어주기
     }
 }
