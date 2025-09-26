@@ -32,7 +32,7 @@ public class Main {
                 int r = Integer.parseInt(st.nextToken());
                 map[r][c] = 1;
             }
-            
+
             int cnt = 0;
             // 배추 밭 스캔
             for (int r = 0; r < N; r++) {
@@ -46,31 +46,25 @@ public class Main {
             System.out.println(cnt);
         }
     }
-    
+
     public static void bfs(int startR, int startC) {
         Queue<int[]> queue = new LinkedList<>();
         queue.add(new int[] {startR, startC});
         visited[startR][startC] = true;
-        
+
         while (!queue.isEmpty()) {
             int[] cur = queue.poll();
-            int r = cur[0];
-            int c = cur[1];
-            
+            int cur_r = cur[0];
+            int cur_c = cur[1];
+
             for (int d = 0; d < 4; d++) {
-                int nextR = r + dr[d];
-                int nextC = c + dc[d];
-                
-                if (nextR < 0 || nextR >= N || nextC < 0 || nextC >= M) {
-                    continue;
+                int nextR = cur_r + dr[d];
+                int nextC = cur_c + dc[d];
+
+                if (0 <= nextR && nextR < N && 0 <= nextC && nextC < M &&  !visited[nextR][nextC] && map[nextR][nextC] == 1) {
+                    queue.add(new int[] {nextR, nextC});
+                    visited[nextR][nextC] = true;
                 }
-                
-                if (visited[nextR][nextC] || map[nextR][nextC] == 0) {
-                    continue;
-                }
-                
-                queue.add(new int[] {nextR, nextC});
-                visited[nextR][nextC] = true;
             }
         }
     }
