@@ -1,0 +1,25 @@
+animal_r, animal_c = map(int, input().split())
+human_r, human_c = map(int, input().split())
+N = int(input())
+
+if ((animal_r - human_r)**2 + (animal_c - human_c)**2) ** 0.5 < 5:
+	print("NO")
+	
+else:
+	min_r = min(animal_r, human_r)
+	max_r = max(animal_r, human_r)
+	min_c = min(animal_c, human_c)
+	max_c = max(animal_c, human_c)
+	
+	cnt = 0
+	for _ in range(N):
+		trap_r, trap_c = map(int, input().split())
+	
+		if min_r <= trap_r <= max_r and min_c <= trap_c <= max_c:
+			cnt += 1
+	
+	
+	if cnt >= 3:
+		print("YES")
+	else:
+		print("NO")
