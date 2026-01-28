@@ -1,0 +1,17 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+import sys
+import math
+
+input = sys.stdin.readline
+
+am, cm, bm = map(int, input().split())
+
+boonja = am * bm
+boonmo = cm
+
+common_div = math.gcd(boonja, boonmo)
+a = boonja // common_div
+b = boonmo // common_div
+
+print(a, b)
