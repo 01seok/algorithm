@@ -1,0 +1,39 @@
+# 총 라운드 수
+N = int(input())
+
+# 2N개 줄에 i번째 라운드의 각각 어린이 딱지의 상태 주어짐
+# 첫 번째 줄 A 딱지, 두 번째 줄 B 딱지
+# 딱지의 요소 중 첫 번째 숫자는 문양 갯수고 그 다음엔 문양들을 뜻함
+
+for i in range(N):
+	a_input = list(map(int, input().split()))
+	a_num_cnt = a_input[0]
+	a_nums = a_input[1:]
+	
+	b_input = list(map(int, input().split()))
+	b_num_cnt = b_input[0]
+	b_nums = b_input[1:]
+	
+	a_count = [0] * 5
+	b_count = [0] * 5
+	
+	for shape in a_nums:
+	 a_count[shape] += 1
+	
+	for shape in b_nums:
+	 b_count[shape] += 1
+	
+	
+	winner = 'D'
+	for grade in range(4, 0, -1):
+		if a_count[grade] > b_count[grade]:
+			winner = 'A'
+			break
+	
+		elif b_count[grade] > a_count[grade]:
+			winner = 'B'
+			break
+	
+	print(winner)
+			 
+	
