@@ -1,0 +1,16 @@
+T = int(input())
+
+dr = (-1, 1, 0, 0)
+dc = (0, 0, -1, 1)
+
+for tc in range(T):
+	target_r, target_c, target_time = map(int, input().split())
+
+	# 최소 거리 구하기
+	min_dist = abs(target_r) + abs(target_c)
+
+	if target_time >= min_dist and (target_time - min_dist) % 2 == 0:
+		print("YES")
+	else:
+		print("NO")
+		
