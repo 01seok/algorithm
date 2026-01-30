@@ -1,0 +1,10 @@
+N = int(input())
+
+MOD = 10**9 + 7
+
+if N == 1:
+    print(1)
+else:
+    # dp[N] = 2^(N-2)
+    result = pow(2, N - 2, MOD)
+    print(result)
