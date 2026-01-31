@@ -1,0 +1,41 @@
+# N개의 감시 초소가 M개로 제한 되었음
+# 최대한 넓은 지역 감시를 위해 감시 초소 중 가장 인접한 두 초소 사이 사이 거리를 최대로
+# 초소 개수 N -> M개로 줄였을 때 최대 길이들 중 최소값 구하기
+
+N, M = map(int, input().split())
+cctvs = []
+for _ in range(N):
+	cctvs.append(int(input()))
+cctvs.sort()
+
+def can_select(between_cctv_dist):
+	cnt = 1
+	last_cctv = cctvs[0]
+
+	for i in range(1, N):
+		if cctvs[i] - last_cctv >= between_cctv_dist:
+			cnt += 1
+			last_cctv = cctvs[i]
+
+	if cnt >= M:
+		return True
+
+	else:
+		return False
+
+# 이분탐색
+left = 1
+right = cctvs[-1] - cctvs[0]
+ans = 0
+
+while left <= right:
+	mid = (left + right) // 2
+
+	if can_select(mid):
+		ans = mid
+		left = mid + 1
+
+	else:
+		right = mid - 1
+
+print(ans)
