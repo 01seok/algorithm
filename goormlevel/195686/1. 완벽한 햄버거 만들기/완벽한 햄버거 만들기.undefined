@@ -1,0 +1,23 @@
+N = int(input())
+taste_lst = list(map(int, input().split()))
+
+max_taste = max(taste_lst)
+max_idx = taste_lst.index(max_taste)
+
+flag = True
+
+for i in range(max_idx, 0, -1):
+	if taste_lst[i] < taste_lst[i-1]:
+		flag = False
+		break
+
+if flag:
+	for i in range(max_idx, N-1):
+		if taste_lst[i] < taste_lst[i+1]:
+			flag = False
+			break
+
+if flag:
+	print(sum(taste_lst))
+else:
+	print(0)
