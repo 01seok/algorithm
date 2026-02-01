@@ -1,0 +1,60 @@
+N = int(input())
+Rg, Cg = map(int, input().split())
+Rp, Cp = map(int, input().split())
+
+board = [[0] * N for _ in range(N)]
+for i in range(N):
+	row = input().split()
+	for j in range(N):
+		this_turn_cmd = row[j]
+		command = this_turn_cmd[-1]
+		count = int(this_turn_cmd[:-1])
+		board[i][j] = (count, command)
+
+delta = {
+	'U' : (-1, 0),
+	'D' : (1, 0),
+	'R' : (0, 1),
+	'L' : (0, -1)
+}
+
+def simulate(start_r, start_c):
+	visited = set()
+	# 0 base idx
+	r, c = start_r - 1, start_c - 1
+	visited.add((r,c))
+
+	while True:
+		cnt, cmd = board[r][c]
+		dr, dc = delta[cmd]
+
+		for _ in range(cnt):
+			nr, nc = r + dr, c + dc
+
+			if nr < 0:
+				nr = N-1
+
+			elif nr >= N:
+				nr = 0
+
+			if nc < 0:
+				nc = N - 1
+
+			elif nc >= N:
+				nc = 0
+			
+			r, c = nr, nc
+			
+			if (r,c) in visited:
+				return len(visited)
+
+			visited.add((r,c))
+
+goorm_score = simulate(Rg, Cg)
+player_score = simulate(Rp, Cp)
+
+if goorm_score > player_score:
+	print("goorm", goorm_score)
+else:
+	print("player", player_score)
+			
