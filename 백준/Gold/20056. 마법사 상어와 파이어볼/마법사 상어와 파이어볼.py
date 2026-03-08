@@ -27,9 +27,9 @@ for _ in range(K):
     # 다음 턴에 쓸 파이어볼 정보 리스트
     next_fireballs = []
 
-    for (r, c), items in temp_cell.items(): # 도착한 칸에 모여있는 파이어볼들 처리
-        if len(items) == 1: # 1개 밖에 없으면
-            m,s,d = items[0]
+    for (r, c), balls in temp_cell.items(): # 도착한 칸에 모여있는 파이어볼들 처리
+        if len(balls) == 1: # 1개 밖에 없으면
+            m,s,d = balls[0]
             next_fireballs.append((r,c,m,s,d))
             continue
 
@@ -37,9 +37,9 @@ for _ in range(K):
         total_s = 0
         zzak_cnt = 0    # 방향 짝수 파이어볼 수
         hol_cnt = 0     # 방향 홀수 파이어볼 수
-        cnt = len(items)# 모여있는 파이어볼 수
+        cnt = len(balls)# 모여있는 파이어볼 수
 
-        for m, s, d in items:
+        for m, s, d in balls:
             total_m += m
             total_s += s
 
@@ -64,7 +64,7 @@ for _ in range(K):
             next_fireballs.append((r,c,new_m, new_s, nd))
 
     fireballs = next_fireballs
-    
+
 ans = 0
 for r,c,m,s,d in fireballs:
     ans += m
