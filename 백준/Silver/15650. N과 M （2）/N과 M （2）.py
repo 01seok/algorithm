@@ -1,27 +1,15 @@
 N, M = map(int, input().split())
 seq = []
-visited = [False] * (N+1)
 
-def is_up(lst):
-    for i in range(len(lst)-1):
-        if lst[i] > lst[i+1]:
-            return False
-
-    return True
-
-def backtracking():
+def backtracking(start):
     if len(seq) == M:
         print(*seq)
         return
 
-    for i in range(1, N+1):
-        if not visited[i]:
-            visited[i] = True
-            seq.append(i)
-            if is_up(seq):
+    for i in range(start, N+1):
+        seq.append(i)
+        backtracking(i+1)
+        seq.pop()
 
-                backtracking()
-            seq.pop()
-            visited[i] = False
 
-backtracking()
+backtracking(1)
